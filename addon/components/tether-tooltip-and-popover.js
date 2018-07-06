@@ -513,8 +513,9 @@ export default EmberTetherComponent.extend({
       $target.off();
     }
 
-    if(this) {
-      this._super(...arguments); // Removes tether
+    this._super(...arguments); // Removes tether
+
+    if(!this.isDestroyed && !this.isDestroying) {
       this.sendAction('onDestroy', this);
     }
   },
